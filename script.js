@@ -2,7 +2,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const savedCode = sessionStorage.getItem("codeInput");
   if (savedCode) {
-    document.getElementById("codeInput").value = savedCode;
+    const codeInput = document.getElementById("codeInput");
+    codeInput.value = savedCode;
+    adjustTextareaHeight(codeInput);
     const highlightedCode = highlightSyntax(savedCode);
     document.getElementById("highlightedCode").innerHTML = highlightedCode;
   }
@@ -10,11 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("codeInput").addEventListener("input", function () {
   const code = this.value;
+  adjustTextareaHeight(this);
   const highlightedCode = highlightSyntax(code);
   document.getElementById("highlightedCode").innerHTML = highlightedCode;
   // Save code to session storage
   sessionStorage.setItem("codeInput", code);
 });
+
+function adjustTextareaHeight(textarea) {
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+}
 
 function highlightSyntax(code) {
   const keywords = [
@@ -63,7 +71,7 @@ function highlightSyntax(code) {
       }
 
       const match = line.match(
-        /(JUMP|JUMPZ|JUMPG|COPY|ICOPY|DECSKIP)\s+(-?\d+)/
+        /(JUMP|JUMPZ|JUMPG|COPY|ICOPY|DECSKIP|SETARG)\s+(-?\d+)/
       );
       if (match) {
         const argument = match[2];
