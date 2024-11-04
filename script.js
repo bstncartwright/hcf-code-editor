@@ -61,6 +61,14 @@ function highlightSyntax(code) {
     (line) => !commentRegex.test(line) && line.trim() !== ""
   );
 
+  const lineIndexMap = new Map();
+  let nonCommentNonEmptyIndex = 0;
+  lines.forEach((line, index) => {
+    if (!commentRegex.test(line) && line.trim() !== "") {
+      lineIndexMap.set(index, nonCommentNonEmptyIndex++);
+    }
+  });
+
   return lines
     .map((line, index) => {
       if (commentRegex.test(line) || line.trim() === "") {
@@ -75,7 +83,7 @@ function highlightSyntax(code) {
       );
       if (match) {
         const argument = match[2];
-        const nonCommentNonEmptyIndex = nonCommentNonEmptyLines.indexOf(line);
+        const nonCommentNonEmptyIndex = lineIndexMap.get(index);
         const referencedLineIndex =
           nonCommentNonEmptyIndex + 1 + parseInt(argument);
         const referencedLine =
