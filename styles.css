@@ -38,15 +38,22 @@ textarea {
 }
 
 .comment {
-    color: #6a737d;
+    color: #999; /* Changed color to gray */
     font-style: italic;
 }
 
 .inlay-hint {
-    background-color: #e7f3ff;
-    border-left: 4px solid #007bff;
-    padding: 5px;
-    margin: 5px 0;
+    color: #6a737d; /* Changed color to gray */
     font-size: 14px;
-    color: #333;
+    margin-left: 10px; /* Adjusted margin */
+    display: inline; /* Changed to inline */
+}
+
+.line-number {
+    color: #999;
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    margin-right: 10px;
+    user-select: none;
 }
