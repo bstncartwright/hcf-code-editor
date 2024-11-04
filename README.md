@@ -1,2 +1,1 @@
-# hcf-code-editor
-A web app for editing and visualizing HCF code with syntax highlighting
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
