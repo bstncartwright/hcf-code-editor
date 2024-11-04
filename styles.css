@@ -41,3 +41,12 @@ textarea {
     color: #6a737d;
     font-style: italic;
 }
+
+.inlay-hint {
+    background-color: #e7f3ff;
+    border-left: 4px solid #007bff;
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
