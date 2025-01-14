@@ -60,3 +60,23 @@ textarea {
     margin-right: 10px;
     user-select: none;
 }
+
+/* Add styles for VIM mode */
+.vim-mode {
+    background-color: #282c34;
+    color: #abb2bf;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.vim-mode .keyword {
+    color: #c678dd;
+}
+
+.vim-mode .number {
+    color: #d19a66;
+}
+
+.vim-mode .comment {
+    color: #5c6370;
+    font-style: italic;
+}
