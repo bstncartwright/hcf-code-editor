@@ -1,4 +1,3 @@
-// Load code from session storage on page load
 document.addEventListener("DOMContentLoaded", function () {
   const savedCode = sessionStorage.getItem("codeInput");
   if (savedCode) {
@@ -8,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const highlightedCode = highlightSyntax(savedCode);
     document.getElementById("highlightedCode").innerHTML = highlightedCode;
   }
+
+  // Initialize VIM mode for the code editor
+  const codeInput = document.getElementById("codeInput");
+  const vimMode = new VIM(codeInput);
+  vimMode.init();
 });
 
 document.getElementById("codeInput").addEventListener("input", function () {
@@ -17,6 +21,13 @@ document.getElementById("codeInput").addEventListener("input", function () {
   document.getElementById("highlightedCode").innerHTML = highlightedCode;
   // Save code to session storage
   sessionStorage.setItem("codeInput", code);
+});
+
+document.getElementById("codeInput").addEventListener("keydown", function (event) {
+  // Handle VIM mode key bindings
+  if (vimMode.handleKey(event)) {
+    event.preventDefault();
+  }
 });
 
 function adjustTextareaHeight(textarea) {
